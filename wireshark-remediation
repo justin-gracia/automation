@@ -5,12 +5,6 @@
     Please test thoroughly in a non-production environment before deploying widely.
     Make sure to run as Administrator or with appropriate privileges.
 
-.NOTES
-    Author        : Justin Gracia
-    Date Created  : 2025-04-01
-    Last Modified : 2025-04-01
-    Version       : 1.0
-
 .USAGE
     Example syntax:
     PS C:\> .\remediation-wireshark-uninstall.ps1 
