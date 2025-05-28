@@ -1,0 +1,41 @@
+<#
+.SYNOPSIS
+    This PowerShell script configures the registry to restrict Windows telemetry to Basic or lower, remediating STIG finding WN10-CC-000205.
+
+.NOTES
+    Author          : Justin Gracia
+    LinkedIn        : linkedin.com/in/justin-gracia/
+    GitHub          : github.com/justin-gracia
+    Date Created    : 05/28/2025
+    Last Modified   : 05/28/2025
+    Version         : 1.0
+    CVEs            : N/A
+    Plugin IDs      : N/A
+    STIG-ID         : WN10-CC-000205
+
+.TESTED ON
+    Date(s) Tested  : 
+    Tested By       : 
+    Systems Tested  : 
+    PowerShell Ver. : 
+
+.USAGE
+    Example syntax:
+    PS C:\> .\__remediation_template(STIG-ID-WN10-CC-000205).ps1 
+#>
+
+# Define the registry path and value
+$regPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection\"
+$valueName = "AllowTelemetry"
+$desiredValue = 0
+
+# Check if the registry path exists; if not, create it
+if (-not (Test-Path $regPath)) {
+    New-Item -Path $regPath -Force | Out-Null
+}
+
+# Set the registry value as REG_DWORD (default for Set-ItemProperty with integer)
+Set-ItemProperty -Path $regPath -Name $valueName -Value $desiredValue -Type Dword
+
+# Output confirmation
+Write-Output "Registry key '$valueName' set to $desiredValue at $regPath"
